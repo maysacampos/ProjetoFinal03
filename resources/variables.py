@@ -1,9 +1,6 @@
-# Variaveis 
-url = 'https://restful-booker.herokuapp.com'
+url = 'https://bookstore.toolsqa.com'
 content_type = 'application/json'
-firstname = 'Chris'
-lastname = 'Brown'
-totalprice = 120
-depositpaid = True 
-bookingdates = dict(checkin='2024-10-10', checkout='2024-10-10')
-additionalneeds = 'Breakfast'
+userName = 'User6'
+password = '@Password123'
+isbn = '9781449325862'
+BOOK_JSON_PATH = './fixtures/json/book.json'

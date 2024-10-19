@@ -1,141 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.1 (Python 3.12.2 on win32)" generated="2024-10-18T21:32:50.137848" rpa="false" schemaversion="5">
-<suite id="s1" name="Test Booking" source="c:\ITERASYS\ProjetoFinal03\__tests__\api\test_booking.robot">
-<kw name="Create Token" owner="common" type="SETUP">
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2024-10-18T21:32:50.936071" level="INFO">${body} = {'username': 'admin', 'password': 'password123'}</msg>
-<var>${body}</var>
-<arg>username=admin</arg>
-<arg>password=password123</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2024-10-18T21:32:50.936071" elapsed="0.006071"/>
-</kw>
-<kw name="POST" owner="RequestsLibrary">
-<msg time="2024-10-18T21:32:51.682143" level="INFO">POST Request : url=https://restful-booker.herokuapp.com/auth 
- path_url=/auth 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '48', 'Content-Type': 'application/json'} 
- body=b'{"username": "admin", "password": "password123"}' 
- </msg>
-<msg time="2024-10-18T21:32:51.682143" level="INFO">POST Response : url=https://restful-booker.herokuapp.com/auth 
- status=200, reason=OK 
- headers={'Server': 'Cowboy', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1729297972&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;s=AadPZ%2B3v0PmzGtlFrF74J0JOHFaE5MfidnrddAGSePM%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1729297972&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;s=AadPZ%2B3v0PmzGtlFrF74J0JOHFaE5MfidnrddAGSePM%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '27', 'Etag': 'W/"1b-/gxXw0GCzs6TnxiBhB/f+60o/lw"', 'Date': 'Sat, 19 Oct 2024 00:32:52 GMT', 'Via': '1.1 vegur'} 
- body={"token":"84fac19d16a1ec1"} 
- </msg>
-<msg time="2024-10-18T21:32:51.683137" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<var>${response}</var>
-<arg>url=${url}/auth</arg>
-<arg>json=${body}</arg>
-<doc>Sends a POST request.</doc>
-<status status="PASS" start="2024-10-18T21:32:50.943627" elapsed="0.739510"/>
-</kw>
-<kw name="Status Should Be" owner="RequestsLibrary">
-<arg>200</arg>
-<doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" start="2024-10-18T21:32:51.683137" elapsed="0.001001"/>
+<robot generator="Robot 7.1 (Python 3.12.2 on win32)" generated="2024-10-19T20:18:16.816463" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Books" source="c:\ITERASYS\ProjetoFinal03\__tests__\api\test_books.robot">
+<test id="s1-t1" name="Create Book" line="19">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-19T20:18:17.680497" level="INFO">${userName} = User6</msg>
+<var>${userName}</var>
+<arg>User6</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-19T20:18:17.679496" elapsed="0.002000"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-10-18T21:32:51.687136" level="INFO">${token} = 84fac19d16a1ec1</msg>
-<var>${token}</var>
-<arg>${response.json()}[token]</arg>
+<msg time="2024-10-19T20:18:17.688064" level="INFO">${password} = @Password123</msg>
+<var>${password}</var>
+<arg>@Password123</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-10-18T21:32:51.684138" elapsed="0.002998"/>
+<status status="PASS" start="2024-10-19T20:18:17.687065" elapsed="0.000999"/>
+</kw>
+<kw name="Create User" owner="common">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-10-19T20:18:17.697060" level="INFO">${body} = {'userName': 'User6', 'password': '@Password123'}</msg>
+<var>${body}</var>
+<arg>userName=${userName}</arg>
+<arg>password=${password}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-10-19T20:18:17.694061" elapsed="0.004999"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-10-19T20:18:18.529860" level="INFO">POST Request : url=https://bookstore.toolsqa.com/Account/v1/User 
+ path_url=/Account/v1/User 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '49', 'Content-Type': 'application/json'} 
+ body=b'{"userName": "User6", "password": "@Password123"}' 
+ </msg>
+<msg time="2024-10-19T20:18:18.530868" level="INFO">POST Response : url=https://bookstore.toolsqa.com/Account/v1/User 
+ status=406, reason=Not Acceptable 
+ headers={'Server': 'nginx/1.17.10 (Ubuntu)', 'Date': 'Sat, 19 Oct 2024 23:18:19 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '40', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'ETag': 'W/"28-Ol+1T9TtJMfkxjesktiJwJPAuBU"'} 
+ body={"code":"1204","message":"User exists!"} 
+ </msg>
+<msg time="2024-10-19T20:18:18.531858" level="FAIL">HTTPError: 406 Client Error: Not Acceptable for url: https://bookstore.toolsqa.com/Account/v1/User</msg>
+<var>${response}</var>
+<arg>${url}/Account/v1/User</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request.</doc>
+<status status="FAIL" start="2024-10-19T20:18:17.699060" elapsed="0.844907">HTTPError: 406 Client Error: Not Acceptable for url: https://bookstore.toolsqa.com/Account/v1/User</status>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>201</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="NOT RUN" start="2024-10-19T20:18:18.544967" elapsed="0.001000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${userId}</var>
+<arg>${response.json()}[userID]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2024-10-19T20:18:18.545967" elapsed="0.000998"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2024-10-18T21:32:51.688137" level="INFO">${token} = 84fac19d16a1ec1</msg>
-<arg>${token}</arg>
+<arg>${userId}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2024-10-18T21:32:51.687136" elapsed="0.001001"/>
+<status status="NOT RUN" start="2024-10-19T20:18:18.547965" elapsed="0.000505"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
-<arg>${token}</arg>
+<arg>${userId}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2024-10-18T21:32:51.689136" elapsed="0.000976"/>
+<status status="NOT RUN" start="2024-10-19T20:18:18.548470" elapsed="0.000000"/>
 </kw>
 <arg>${url}</arg>
-<status status="PASS" start="2024-10-18T21:32:50.935072" elapsed="0.756041"/>
+<arg>${userName}</arg>
+<arg>${password}</arg>
+<status status="FAIL" start="2024-10-19T20:18:17.691065" elapsed="0.857405">HTTPError: 406 Client Error: Not Acceptable for url: https://bookstore.toolsqa.com/Account/v1/User</status>
 </kw>
-<test id="s1-t1" name="Get Book" line="40">
+<kw name="Create Bearer" owner="common">
+<arg>${url}</arg>
+<arg>${userName}</arg>
+<arg>${password}</arg>
+<status status="NOT RUN" start="2024-10-19T20:18:18.548470" elapsed="0.000000"/>
+</kw>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2024-10-18T21:32:51.694623" level="INFO">${headers} = {'Content-Type': 'application/json'}</msg>
 <var>${headers}</var>
 <arg>Content-Type=${content_type}</arg>
+<arg>Authorization=Bearer ${bearer}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2024-10-18T21:32:51.693624" elapsed="0.002998"/>
+<status status="NOT RUN" start="2024-10-19T20:18:18.548470" elapsed="0.000000"/>
 </kw>
-<kw name="GET" owner="RequestsLibrary">
-<msg time="2024-10-18T21:32:52.274787" level="INFO">GET Request : url=https://restful-booker.herokuapp.com/BookStore/v1/Book?ISBN=9781449325862 
- path_url=/BookStore/v1/Book?ISBN=9781449325862 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
- body=None 
- </msg>
-<msg time="2024-10-18T21:32:52.275785" level="INFO">GET Response : url=https://restful-booker.herokuapp.com/BookStore/v1/Book?ISBN=9781449325862 
- status=404, reason=Not Found 
- headers={'Server': 'Cowboy', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1729297972&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;s=AadPZ%2B3v0PmzGtlFrF74J0JOHFaE5MfidnrddAGSePM%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1729297972&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;s=AadPZ%2B3v0PmzGtlFrF74J0JOHFaE5MfidnrddAGSePM%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Content-Type': 'text/plain; charset=utf-8', 'Content-Length': '9', 'Etag': 'W/"9-0gXL1ngzMqISxa6S1zx3F4wtLyg"', 'Date': 'Sat, 19 Oct 2024 00:32:52 GMT', 'Via': '1.1 vegur'} 
- body=Not Found 
- </msg>
-<msg time="2024-10-18T21:32:52.275785" level="FAIL">HTTPError: 404 Client Error: Not Found for url: https://restful-booker.herokuapp.com/BookStore/v1/Book?ISBN=9781449325862</msg>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(open("${BOOK_JSON_PATH}").read())</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2024-10-19T20:18:18.548470" elapsed="0.009528"/>
+</kw>
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${body}</arg>
+<arg>userId=${userId}</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="NOT RUN" start="2024-10-19T20:18:18.558997" elapsed="0.000000"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
 <var>${response}</var>
-<arg>url=${url}/BookStore/v1/Book?ISBN=${isbn}</arg>
-<doc>Sends a GET request.</doc>
-<status status="FAIL" start="2024-10-18T21:32:51.697621" elapsed="0.660303">HTTPError: 404 Client Error: Not Found for url: https://restful-booker.herokuapp.com/BookStore/v1/Book?ISBN=9781449325862</status>
+<arg>${url}/BookStore/v1/Books</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request.</doc>
+<status status="NOT RUN" start="2024-10-19T20:18:18.561996" elapsed="0.000000"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
 <var>${response_body}</var>
 <arg>${response.json()}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="NOT RUN" start="2024-10-18T21:32:52.358923" elapsed="0.000000"/>
+<status status="NOT RUN" start="2024-10-19T20:18:18.562995" elapsed="0.000999"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${response_body}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="NOT RUN" start="2024-10-18T21:32:52.360923" elapsed="0.000000"/>
+<status status="NOT RUN" start="2024-10-19T20:18:18.566994" elapsed="0.000000"/>
 </kw>
 <kw name="Status Should Be" owner="RequestsLibrary">
-<arg>200</arg>
+<arg>201</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="NOT RUN" start="2024-10-18T21:32:52.362922" elapsed="0.000442"/>
+<status status="NOT RUN" start="2024-10-19T20:18:18.567992" elapsed="0.000000"/>
 </kw>
-<kw name="Should Be Equal" owner="BuiltIn">
-<arg>${response_body}[title]</arg>
-<arg>Chris</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="NOT RUN" start="2024-10-18T21:32:52.363364" elapsed="0.001661"/>
-</kw>
-<kw name="Should Be Equal" owner="BuiltIn">
-<arg>${response_body}[subTitle]</arg>
-<arg>Brown</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="NOT RUN" start="2024-10-18T21:32:52.366023" elapsed="0.000000"/>
-</kw>
-<kw name="Should Be Equal" owner="BuiltIn">
-<arg>${response_body}[author]</arg>
-<arg>Richard E. Silverman</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="NOT RUN" start="2024-10-18T21:32:52.367022" elapsed="0.001000"/>
-</kw>
-<kw name="Should Be Equal" owner="BuiltIn">
-<arg>${response_body}[publisher]</arg>
-<arg>O'Reilly Media</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="NOT RUN" start="2024-10-18T21:32:52.371022" elapsed="0.000000"/>
-</kw>
-<kw name="Should Be Equal" owner="BuiltIn">
-<arg>${response_body}[pages]</arg>
-<arg>${{int(234)}}</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="NOT RUN" start="2024-10-18T21:32:52.377005" elapsed="0.000000"/>
-</kw>
-<kw name="Should Be Equal" owner="BuiltIn">
-<arg>${response_body}[description]</arg>
-<arg>This pocket guide is the perfect on-the-job companion to Git,</arg>
-<arg>the distributed version control system. It provides a compact, readable introduction to Git for new users,</arg>
-<arg>as well as a reference to common commands and procedures for those of you with Git exp</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="NOT RUN" start="2024-10-18T21:32:52.380005" elapsed="0.000000"/>
-</kw>
-<status status="FAIL" start="2024-10-18T21:32:51.691113" elapsed="0.691271">HTTPError: 404 Client Error: Not Found for url: https://restful-booker.herokuapp.com/BookStore/v1/Book?ISBN=9781449325862</status>
+<doc>Cria um novo livro na loja.</doc>
+<status status="FAIL" start="2024-10-19T20:18:17.674596" elapsed="0.895397">HTTPError: 406 Client Error: Not Acceptable for url: https://bookstore.toolsqa.com/Account/v1/User</status>
 </test>
-<status status="FAIL" start="2024-10-18T21:32:50.151700" elapsed="2.237680"/>
+<status status="FAIL" start="2024-10-19T20:18:16.910782" elapsed="1.661213"/>
 </suite>
 <statistics>
 <total>
@@ -144,9 +129,10 @@
 <tag>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="Test Booking">Test Booking</stat>
+<stat pass="0" fail="1" skip="0" id="s1" name="Test Books">Test Books</stat>
 </suite>
 </statistics>
 <errors>
+<msg time="2024-10-19T20:18:17.664469" level="ERROR">Error in file 'c:\ITERASYS\ProjetoFinal03\resources\common.resource' on line 4: Variable file 'C:ITERASYSProjetoFinal03esourcesvariables.py' does not exist.</msg>
 </errors>
 </robot>
