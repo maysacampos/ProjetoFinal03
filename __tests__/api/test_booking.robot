@@ -10,6 +10,9 @@ Resource       ../../resources/common.resource
 Variables      ../../resources/variables.py
 Suite Setup    Create Token    ${url}         
 
+*** Variables ***
+${isbn}    9781449325862
+
 *** Test Cases ***
 Create Booking
   
@@ -41,9 +44,8 @@ Get Book
     Log To Console    ${response_body}
 
     Status Should Be    200
-    Should Be Equal    ${response_body}[isbn]    9781449325862
-    Should Be Equal    ${response_body}[title]    Git Pocket Guide
-    Should Be Equal    ${response_body}[subTitle]    A Working Introduction
+    Should Be Equal    ${response_body}[title]    Chris
+    Should Be Equal    ${response_body}[subTitle]    Brown
     Should Be Equal    ${response_body}[author]    Richard E. Silverman
     Should Be Equal    ${response_body}[publisher]    O'Reilly Media
     Should Be Equal    ${response_body}[pages]    ${{int(234)}}

@@ -2,6 +2,7 @@
 *** Settings ***
 Library    RequestsLibrary
 
+
 *** Keywords ***
 Create Token
     [Arguments]    ${url}
@@ -18,7 +19,7 @@ Get Booking Id
     [Arguments]    ${url}    ${firstname}    ${lastname}
 
     ${response}    GET    url=${url}/booking?firstname=${firstname}&lastname=${lastname}
-
+    
     ${response_body}    Set Variable    ${response.json()}
     Log To Console    ${response_body}
     
@@ -28,9 +29,9 @@ Get Booking Id
     Set Suite Variable    ${booking_id}
 
 Create User   
-    [Arguments]    ${url}    ${userName}    ${password}
+    [Arguments]    ${url}    ${username}    ${password}
     ${headers}    Create Dictionary    Content-Type=${content_type}    
-    ${body}    Create Dictionary    userName=${userName}    password=${password}  
+    ${body}    Create Dictionary    userName=${username}    password=${password}  
 
     ${response}    POST    url=${url}/Account/v1/User    json=${body}    
      ...    headers=${headers}
